@@ -100,12 +100,16 @@ def add_student(students):
     year_level = get_non_empty_input("Enter year level: ")
     contact_number = get_contact_number()
 
+    students.append({
     student = {
         "student_id": student_id,
         "name": name,
         "course": course,
         "year_level": year_level,
         "contact_number": contact_number
+    })
+
+        "contact_number": contact_number,
     }
     students.append(student)
     print("Student added successfully.")
@@ -246,8 +250,25 @@ def main():
         else:
             print("Exiting program...")
             save_students(students)
+        elif choice == "2":
+            view_students(students)
+
+        elif choice == "3":
+            search_student(students)
+
+        elif choice == "4":
+            update_student(students)
+
+        elif choice == "5":
+            delete_student(students)
+            save_students(students)
+
+        else:
+            print("Exiting program...")
+            save_students(students)
             break
 
 
 if __name__ == "__main__":
+    main()
     main()
