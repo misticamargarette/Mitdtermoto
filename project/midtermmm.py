@@ -252,10 +252,20 @@ def main():
             save_students(students)
         elif choice == "2":
             view_students(students)
+
         elif choice == "3":
             search_student(students)
+
+        elif choice == "4":
+            update_student(students)
+
+        elif choice == "5":
+            delete_student(students)
+            save_students(students)
+
         else:
-            print("Exiting program.")
+            print("Exiting program...")
+            save_students(students)
             break
 
 
