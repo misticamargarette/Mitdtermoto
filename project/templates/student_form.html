@@ -8,7 +8,7 @@
         <div class="brand">
             <img class="brand-logo" src="{{ url_for('static', filename='pup-logo.png') }}" alt="Polytechnic University of the Philippines logo">
             <span class="brand-name">Polytechnic University of the Philippines</span>
-            <span class="brand-sub">/ Admin</span>
+
         </div>
         <a class="btn-ghost" href="{{ url_for('student_web.dashboard') }}">Back</a>
     </header>
@@ -67,7 +67,7 @@
                         </span>
                         <div>
                             <h2 id="academic-title">Academic details</h2>
-                            <p>Course enrollment and standing</p>
+                            <p>Course enrollment</p>
                         </div>
                     </div>
 
@@ -76,7 +76,7 @@
                             <label for="course">Course <span>required</span></label>
                             <select id="course" name="course" required>
                                 {% set selected_course = student.course if student else '' %}
-                                <option value="" {% if not selected_course %}selected{% endif %}>Select course...</option>
+                                <option value="" {% if not selected_course %}selected{% endif %}>Select course</option>
                                 {% for course in [
                                     "Bachelor of Science in Psychology",
                                     "Bachelor of Secondary Education Major in English",
