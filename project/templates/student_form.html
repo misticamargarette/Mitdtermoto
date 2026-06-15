@@ -45,15 +45,15 @@
                             <div class="name-fields">
                                 <div class="field">
                                     <label for="last_name">Last name <span>required</span></label>
-                                    <input id="last_name" name="last_name" type="text" pattern="[^0-9]*" title="Name cannot contain numbers." value="{{ student.last_name if student else '' }}" required>
+                                    <input id="last_name" name="last_name" type="text" pattern="([A-Z][a-z]+\.?|[A-Z]\.)([ '-]([A-Z][a-z]+\.?|[A-Z]\.))*" title="Use a properly capitalized real name without numbers, nicknames, or random characters." value="{{ student.last_name if student else '' }}" required>
                                 </div>
                                 <div class="field">
                                     <label for="first_name">First name <span>required</span></label>
-                                    <input id="first_name" name="first_name" type="text" pattern="[^0-9]*" title="Name cannot contain numbers." value="{{ student.first_name if student else '' }}" required>
+                                    <input id="first_name" name="first_name" type="text" pattern="([A-Z][a-z]+\.?|[A-Z]\.)([ '-]([A-Z][a-z]+\.?|[A-Z]\.))*" title="Use a properly capitalized real name without numbers, nicknames, or random characters." value="{{ student.first_name if student else '' }}" required>
                                 </div>
                                 <div class="field">
                                     <label for="middle_initial">Middle initial <span>optional</span></label>
-                                    <input id="middle_initial" name="middle_initial" type="text" maxlength="2" pattern="[^0-9]*" title="Name cannot contain numbers." value="{{ student.middle_initial if student else '' }}">
+                                    <input id="middle_initial" name="middle_initial" type="text" maxlength="2" pattern="[A-Za-z]\.?" title="Use one letter only." value="{{ student.middle_initial if student else '' }}">
                                 </div>
                             </div>
                         </div>
@@ -187,7 +187,7 @@
 
                         <div class="field">
                             <label for="emergency_name">Name <span>required</span></label>
-                            <input id="emergency_name" name="emergency_name" type="text" pattern="[^0-9]*" title="Name cannot contain numbers." value="{{ student.emergency_name if student else '' }}" required>
+                            <input id="emergency_name" name="emergency_name" type="text" pattern="([A-Z][a-z]+\.?|[A-Z]\.)([ '-]([A-Z][a-z]+\.?|[A-Z]\.))*" title="Use a properly capitalized real name without numbers, nicknames, or random characters." value="{{ student.emergency_name if student else '' }}" required>
                         </div>
 
                         <div class="field">

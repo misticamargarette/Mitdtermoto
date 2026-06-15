@@ -7,6 +7,7 @@ from models.student_model import StudentModel
 
 STUDENT_ID_PATTERN = re.compile(r"^\d{4}-\d{5}-[A-Z]{2}-\d$")
 NUMBER_PATTERN = re.compile(r"\d")
+NAME_PART_PATTERN = re.compile(r"^(?:[A-Z][a-z]+\.?|[A-Z]\.)(?:[ '-](?:[A-Z][a-z]+\.?|[A-Z]\.))*$")
 COURSE_ABBREVIATIONS = {
     "Bachelor of Science in Psychology": "BS Psych",
     "Bachelor of Secondary Education Major in English": "BSEd Eng",
@@ -253,11 +254,11 @@ def validate_student(student, include_id=True, form_mode="add"):
         if not student.get(field):
             return "Please complete all fields."
 
-    if NUMBER_PATTERN.search(student.get("name", "")):
-        return "Student name cannot contain numbers."
+    if not is_valid_name(student.get("name", "")):
+        return "Student name is invalid. Use real name letters only, without numbers, nicknames, or random characters."
 
-    if NUMBER_PATTERN.search(student.get("emergency_name", "")):
-        return "Emergency contact name cannot contain numbers."
+    if not is_valid_name(student.get("emergency_name", "")):
+        return "Emergency contact name is invalid. Use real name letters only, without numbers, nicknames, or random characters."
 
     contact_number = student.get("contact_number", "")
     if not contact_number.isdigit() or len(contact_number) != 11:
@@ -281,6 +282,14 @@ def validate_student(student, include_id=True, form_mode="add"):
         return "Please select a valid status."
 
     return None
+
+
+def is_valid_name(name):
+    name = name.strip()
+    if not name or NUMBER_PATTERN.search(name):
+        return False
+
+    return all(NAME_PART_PATTERN.fullmatch(part.strip()) for part in name.split(","))
 
 
 def format_student_row(student, index):
